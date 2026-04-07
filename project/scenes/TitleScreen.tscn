@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bq3tivbirui54"]
+
+[ext_resource type="Script" uid="uid://bdmf4h0ei6y14" path="res://scripts/Control.gd" id="1_ch40n"]
+[ext_resource type="Texture2D" uid="uid://da44aenckhbtc" path="res://assets/background.png" id="1_qyuap"]
+
+[node name="TitleScreen" type="Node2D" unique_id=703708497]
+
+[node name="TitleScreen" type="Control" parent="." unique_id=2056403065]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ch40n")
+
+[node name="Background" type="TextureRect" parent="TitleScreen" unique_id=1519537729]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 47.545002
+anchor_bottom = 30.494001
+offset_right = 12.199951
+offset_bottom = -5.76001
+texture = ExtResource("1_qyuap")
+expand_mode = 1
+
+[node name="StartButton" type="Button" parent="TitleScreen" unique_id=129313096]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 47.924004
+anchor_bottom = 30.19
+offset_left = 767.0
+offset_top = 714.0
+offset_right = -777.9602
+offset_bottom = -283.59998
+text = "ENTER ROOM"
