@@ -1,1 +1,1 @@
-Am incarcat fisierul cu teme de proiect. ( Teme proiect PA , .ppt , cnp: 606092929....)
+Am incarcat fisierul cu teme de proiect. ( Teme proiect PA , .pptx , cnp: 606092929....)
