@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b2aolcvtf8msm"]
+
+[ext_resource type="Script" uid="uid://fjunc88e5xfk" path="res://scripts/UseSpot.gd" id="1_xwqql"]
+[ext_resource type="Texture2D" uid="uid://bdo6s73vtn3d6" path="res://assets/door_closed.png" id="2_r5is4"]
+[ext_resource type="Texture2D" uid="uid://cgbcmk6xky4ey" path="res://assets/door_open.png" id="3_4i4iw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwqql"]
+size = Vector2(101, 264)
+
+[node name="UseSpot" type="Node2D" unique_id=1794680910]
+position = Vector2(1689, 1505)
+
+[node name="UseSpot" type="Area2D" parent="." unique_id=366933316]
+position = Vector2(36, -62)
+script = ExtResource("1_xwqql")
+
+[node name="SpriteClosed" type="Sprite2D" parent="UseSpot" unique_id=217334610]
+position = Vector2(17.000122, -1187)
+scale = Vector2(0.441667, 0.694444)
+texture = ExtResource("2_r5is4")
+
+[node name="SpriteOpen" type="Sprite2D" parent="UseSpot" unique_id=503088617]
+visible = false
+position = Vector2(28.999939, -1180.9999)
+scale = Vector2(0.0692708, 0.106104)
+texture = ExtResource("3_4i4iw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UseSpot" unique_id=487829900]
+position = Vector2(21, -1183)
+shape = SubResource("RectangleShape2D_xwqql")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UseSpot" unique_id=422976353]

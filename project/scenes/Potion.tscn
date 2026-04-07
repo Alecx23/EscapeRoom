@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dotf55xempmnx"]
+
+[ext_resource type="Script" uid="uid://dh2kb57f3jcd2" path="res://scripts/PickableItem.gd" id="1_bjhqt"]
+[ext_resource type="Texture2D" uid="uid://bcgojm5w5807u" path="res://assets/PoTion.png" id="2_xpeo5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4y27e"]
+radius = 43.1045
+
+[node name="PickableItem" type="Node2D" unique_id=961043091]
+
+[node name="PickableItem" type="Area2D" parent="." unique_id=2112613079]
+position = Vector2(50, 166)
+script = ExtResource("1_bjhqt")
+item_color = Color(0.572994, 0.966602, 0.511185, 1)
+item_icon = ExtResource("2_xpeo5")
+
+[node name="Sprite2D" type="Sprite2D" parent="PickableItem" unique_id=875623564]
+position = Vector2(862.99994, 756.99994)
+scale = Vector2(0.368056, 0.367188)
+texture = ExtResource("2_xpeo5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableItem" unique_id=1274589860]
+position = Vector2(862, 752)
+shape = SubResource("CircleShape2D_4y27e")
