@@ -1,27 +1,50 @@
 [gd_scene format=3 uid="uid://bt8hdqt844jwr"]
 
-[ext_resource type="Script" uid="uid://wfnegyw8lwh5" path="res://scripts/World.gd" id="1_32lhk"]
-[ext_resource type="Texture2D" uid="uid://dnylan0gb2a11" path="res://assets/Floor-tile_big.png" id="2_b3faq"]
-[ext_resource type="Texture2D" uid="uid://dc1trmadcd3s7" path="res://assets/Floor-tile.png" id="3_0uv0p"]
+[ext_resource type="Script" uid="uid://wfnegyw8lwh5" path="res://scripts/world.gd" id="1_0uv0p"]
+[ext_resource type="Texture2D" uid="uid://dnylan0gb2a11" path="res://assets/Test/Floor-tile_big.png" id="2_b3faq"]
 [ext_resource type="PackedScene" uid="uid://cdvnuwaxxnfs5" path="res://scenes/PickableItem.tscn" id="3_d1c63"]
 [ext_resource type="PackedScene" uid="uid://b2aolcvtf8msm" path="res://scenes/UseSpot.tscn" id="4_1lgw5"]
 [ext_resource type="PackedScene" uid="uid://dotf55xempmnx" path="res://scenes/Potion.tscn" id="5_0uv0p"]
 [ext_resource type="PackedScene" uid="uid://jmis2b40fcu4" path="res://scenes/Player.tscn" id="5_1lgw5"]
 [ext_resource type="Script" uid="uid://67myj7hk605y" path="res://scripts/InventoryUI.gd" id="6_0uv0p"]
+[ext_resource type="PackedScene" uid="uid://cv30bevscsoom" path="res://scenes/Pause_menu.tscn" id="8_b3faq"]
 
 [node name="World" type="Node2D" unique_id=1195723123]
+script = ExtResource("1_0uv0p")
 
-[node name="World" type="Node2D" parent="." unique_id=1231470066]
-script = ExtResource("1_32lhk")
+[node name="Background" type="Node2D" parent="." unique_id=781831434]
 
-[node name="FloorTile" type="Sprite2D" parent="World" unique_id=595907789]
-position = Vector2(1176, 488)
+[node name="FloorTileBig" type="Sprite2D" parent="Background" unique_id=1655187356]
+position = Vector2(1229, 458)
 texture = ExtResource("2_b3faq")
 
-[node name="InventoryUI" type="CanvasLayer" parent="World" unique_id=1965664496]
+[node name="Interactions" type="Node2D" parent="." unique_id=1010245074]
+position = Vector2(67, -20)
+
+[node name="UseSpot" type="Node2D" parent="Interactions" unique_id=256401339]
+position = Vector2(-67, 20)
+
+[node name="Door" parent="Interactions/UseSpot" unique_id=1666000790 instance=ExtResource("4_1lgw5")]
+position = Vector2(1504, 1540)
+
+[node name="Items" type="Node2D" parent="Interactions" unique_id=993429395]
+
+[node name="Key" parent="Interactions/Items" unique_id=179543878 instance=ExtResource("3_d1c63")]
+position = Vector2(-127, -195)
+
+[node name="Potion" parent="Interactions/Items" unique_id=1929507644 instance=ExtResource("5_0uv0p")]
+
+[node name="PlayerManager" type="Node2D" parent="." unique_id=2134123035]
+
+[node name="Player" parent="PlayerManager" unique_id=388376052 instance=ExtResource("5_1lgw5")]
+position = Vector2(944, 597)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=132650828]
+
+[node name="InventoryUI" type="CanvasLayer" parent="UI" unique_id=1965664496]
 script = ExtResource("6_0uv0p")
 
-[node name="BagButton" type="Button" parent="World/InventoryUI" unique_id=328295345]
+[node name="BagButton" type="Button" parent="UI/InventoryUI" unique_id=328295345]
 anchors_preset = -1
 anchor_right = 0.122
 anchor_bottom = 0.083
@@ -32,7 +55,7 @@ grow_vertical = 2
 disabled = true
 text = "🎒"
 
-[node name="Panel" type="PanelContainer" parent="World/InventoryUI" unique_id=1720318018]
+[node name="Panel" type="PanelContainer" parent="UI/InventoryUI" unique_id=1720318018]
 anchors_preset = -1
 anchor_right = 0.094
 anchor_bottom = 0.066
@@ -41,46 +64,18 @@ offset_right = 97.24
 offset_bottom = 37.36
 localize_numeral_system = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="World/InventoryUI/Panel" unique_id=466216984]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/InventoryUI/Panel" unique_id=466216984]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="World/InventoryUI/Panel/VBoxContainer" unique_id=1786274957]
+[node name="Title" type="Label" parent="UI/InventoryUI/Panel/VBoxContainer" unique_id=1786274957]
 layout_mode = 2
 text = "🎒 Inventory"
 
-[node name="ItemList" type="VBoxContainer" parent="World/InventoryUI/Panel/VBoxContainer" unique_id=1583971892]
+[node name="ItemList" type="VBoxContainer" parent="UI/InventoryUI/Panel/VBoxContainer" unique_id=1583971892]
 layout_mode = 2
 
-[node name="CloseButton" type="Button" parent="World/InventoryUI/Panel/VBoxContainer" unique_id=998944648]
+[node name="CloseButton" type="Button" parent="UI/InventoryUI/Panel/VBoxContainer" unique_id=998944648]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="World" unique_id=1848797549]
+[node name="PauseMenu" parent="UI" unique_id=2111899174 instance=ExtResource("8_b3faq")]
 visible = false
-position = Vector2(-253, -172.99998)
-scale = Vector2(4.8554688, 2.7222223)
-texture = ExtResource("3_0uv0p")
-centered = false
-
-[node name="Sprite2D3" type="Sprite2D" parent="World" unique_id=854549638]
-visible = false
-position = Vector2(-253, -172.99998)
-scale = Vector2(4.8554688, 2.7222223)
-texture = ExtResource("3_0uv0p")
-centered = false
-
-[node name="Items" type="Node2D" parent="World" unique_id=1010245074]
-position = Vector2(67, -20)
-
-[node name="PickableItem" parent="World/Items" unique_id=179543878 instance=ExtResource("3_d1c63")]
-position = Vector2(-127, -195)
-
-[node name="PickableItem2" parent="World/Items" unique_id=1929507644 instance=ExtResource("5_0uv0p")]
-
-[node name="UseSpots" type="Node2D" parent="World" unique_id=1753660285]
-position = Vector2(287, -159)
-
-[node name="UseSpot" parent="World/UseSpots" unique_id=1666000790 instance=ExtResource("4_1lgw5")]
-position = Vector2(1013, 1533)
-
-[node name="Player" parent="World" unique_id=388376052 instance=ExtResource("5_1lgw5")]
-position = Vector2(944, 597)
