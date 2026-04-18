@@ -3,9 +3,9 @@ extends Node2D
 @export var world_width  : float = 3000.0
 @export var world_height : float = 3000.0
 
-@onready var player = $Player
-@onready var items_node  : Node2D = $Items
-@onready var spots_node  : Node2D = $UseSpots
+@onready var player = $PlayerManager/Player
+@onready var items_node  : Node2D = $Interactions/Items
+@onready var spots_node  : Node2D = $Interactions/UseSpot
 
 func _ready() -> void:
 	_create_borders()
