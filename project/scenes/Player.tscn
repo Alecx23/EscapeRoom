@@ -8,7 +8,7 @@
 radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0vlq"]
-radius = 91.2414
+radius = 142.44
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3li8b"]
 atlas = ExtResource("4_qu4a1")
@@ -77,7 +77,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cw2d6")
 }],
-"loop": true,
+"loop": false,
 "name": &"hit",
 "speed": 6.0
 }, {
@@ -160,6 +160,6 @@ texture = ExtResource("2_v6fml")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1431860918]
 position = Vector2(-720, 384)
-scale = Vector2(0.5, 0.536)
+scale = Vector2(1, 1.072)
 sprite_frames = SubResource("SpriteFrames_khinc")
-animation = &"interact"
+animation = &"hit"

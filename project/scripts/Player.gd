@@ -22,7 +22,7 @@ func _ready() -> void:
 	prompt_label.visible = false
 	camera.zoom = Vector2(camera_zoom, camera_zoom)
 	camera.limit_left   = -1000
-	camera.limit_top    = -1000
+	camera.limit_top    = -350
 	camera.limit_right  = int(world_width)
 	camera.limit_bottom = int(world_height)
 	prompt_label.add_theme_color_override("font_color", Color(0.168, 0.247, 0.587, 1.0))
