@@ -133,8 +133,12 @@ func _refresh_ui() -> void:
 
 		var icon_texture = item.get("icon", null)
 		if icon_texture != null:
-			var tex_rect := TextureRect.new()
-			tex_rect.texture             = icon_texture
+			var tex_rect := TextureRect.new()			
+			if typeof(icon_texture) == TYPE_STRING:  # <- This is fo loading
+				tex_rect.texture = load(icon_texture)
+			else:
+				tex_rect.texture = icon_texture
+			
 			tex_rect.expand_mode         = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 			tex_rect.stretch_mode        = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			tex_rect.custom_minimum_size = Vector2(36, 36)

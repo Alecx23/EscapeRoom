@@ -34,34 +34,64 @@ tab_size = 6
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1944867756]
+[node name="MainMenu" type="VBoxContainer" parent="." unique_id=1944867756]
 layout_mode = 0
-offset_left = 824.0
+offset_left = 760.0
 offset_top = 568.0
-offset_right = 1068.0
+offset_right = 1160.0
 offset_bottom = 864.0
 theme_override_constants/separation = 55
 
-[node name="Start_Button" type="Button" parent="VBoxContainer" unique_id=129313096]
+[node name="Start_Button" type="Button" parent="MainMenu" unique_id=129313096]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_d07el")
 theme_override_font_sizes/font_size = 55
 text = "Start"
 
-[node name="Settings_Button" type="Button" parent="VBoxContainer" unique_id=1087857280]
+[node name="Settings_Button" type="Button" parent="MainMenu" unique_id=1087857280]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_d07el")
 theme_override_font_sizes/font_size = 55
 text = "Settings
 "
 
-[node name="Quit_Button" type="Button" parent="VBoxContainer" unique_id=914070884]
+[node name="Quit_Button" type="Button" parent="MainMenu" unique_id=914070884]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_d07el")
 theme_override_font_sizes/font_size = 55
 text = "Quit
 "
 
-[connection signal="pressed" from="VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Settings_Button" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit_Button" to="." method="_on_quit_button_pressed"]
+[node name="StarMenu" type="VBoxContainer" parent="." unique_id=486979186]
+visible = false
+layout_mode = 0
+offset_left = 760.0
+offset_top = 568.0
+offset_right = 1160.0
+offset_bottom = 747.0
+theme_override_constants/separation = 55
+
+[node name="NewGame_Button" type="Button" parent="StarMenu" unique_id=1554113498]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d07el")
+theme_override_font_sizes/font_size = 55
+text = "New Game"
+
+[node name="LoadSave_Button" type="Button" parent="StarMenu" unique_id=1027118104]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d07el")
+theme_override_font_sizes/font_size = 55
+text = "Load Save File"
+
+[node name="Back_Button" type="Button" parent="StarMenu" unique_id=934133300]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_d07el")
+theme_override_font_sizes/font_size = 55
+text = "Back"
+
+[connection signal="pressed" from="MainMenu/Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/Settings_Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenu/Quit_Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="StarMenu/NewGame_Button" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="StarMenu/LoadSave_Button" to="." method="_on_load_save_button_pressed"]
+[connection signal="pressed" from="StarMenu/Back_Button" to="." method="_on_back_button_pressed"]

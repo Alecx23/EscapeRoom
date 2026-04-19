@@ -1,40 +1,42 @@
 ## Inventory.gd
 ## Autoload singleton backed by the C++ InventorySystem.
-extends Node
+extends InventorySystem
 
 signal inventory_changed
 
-# ── C++ backend ───────────────────────────────────────────
-var _cpp : InventorySystem = InventorySystem.new()
-
 func _ready() -> void:
-	print("[Inventory] C++ backend ready. Max slots: ", _cpp.get_max_slots())
+	print("[Inventory] C++ backend ready. Max slots: ", get_max_slots())
 
 # ── Add an item ───────────────────────────────────────────
-func add_item(item: Dictionary) -> void:
+func add_item_ext(item: Dictionary) -> bool:
 	if not item.has("id"):
 		item["id"] = item.get("name", "")
-	var added := _cpp.add_item(item)
+	var added = add_item(item)
 	if added:
-		emit_signal("inventory_changed")
+		inventory_changed.emit()
 		print("[Inventory] Added: ", item.get("name", "?"))
 	else:
 		print("[Inventory] Full or invalid: ", item.get("name", "?"))
+	
+	return added
 
 # ── Remove an item by id ──────────────────────────────────
-func remove_item(item_id: String) -> void:
-	var removed := _cpp.remove_item(item_id)
+func remove_item_ext(item_id: String) -> bool:
+	var removed := remove_item(item_id)
 	if removed:
-		emit_signal("inventory_changed")
+		inventory_changed.emit()
 		print("[Inventory] Removed: ", item_id)
-
+	return removed
+	
+# ── Get all items (used by UI) ────────────────────────────
+func get_items() -> Array:
+	return get_all_items()
+'''
 # ── Check if an item exists ───────────────────────────────
 func has_item(item_id: String) -> bool:
 	return _cpp.has_item(item_id)
 
-# ── Get all items (used by UI) ────────────────────────────
-func get_items() -> Array:
-	return _cpp.get_all_items()
+
 
 # ── Get a single item by id ───────────────────────────────
 func get_item(item_id: String) -> Dictionary:
@@ -52,3 +54,9 @@ func clear() -> void:
 # ── Max slots ─────────────────────────────────────────────
 func get_max_slots() -> int:
 	return _cpp.get_max_slots()
+'''	
+
+func clear_inventory() -> void:
+	clear()
+	inventory_changed.emit()
+	print("[Inventory] Cleared everything.")
