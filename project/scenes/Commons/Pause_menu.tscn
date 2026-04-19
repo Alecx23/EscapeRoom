@@ -45,7 +45,6 @@ theme_override_constants/separation = 55
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_kukqi")
 theme_override_font_sizes/font_size = 55
-disabled = true
 text = "Save"
 
 [node name="Quit_to_menu" type="Button" parent="Background/VBoxContainer" unique_id=649125860]
@@ -55,4 +54,5 @@ theme_override_font_sizes/font_size = 55
 text = "Quit to menu"
 icon_alignment = 1
 
+[connection signal="pressed" from="Background/VBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Background/VBoxContainer/Quit_to_menu" to="." method="_on_quit_to_menu_pressed"]
