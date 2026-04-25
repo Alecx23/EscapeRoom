@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://2qv3rl3ney5b"]
+
+[ext_resource type="Script" uid="uid://ilke1j8tgkca" path="res://scripts/Level_1/Puzzel_1/PipePuzzle.gd" id="1_u70ef"]
+[ext_resource type="Texture2D" uid="uid://cygjhthrfnhc" path="res://assets/Objects/lvl1/pipe_puzzle/pipe puzzle pc only.png" id="2_nlfh6"]
+
+[node name="PipePuzzle" type="Control" unique_id=434758499]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u70ef")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1497449387]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -4.0
+offset_right = -14.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Background" type="Panel" parent="." unique_id=814803072]
+visible = false
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -350.0
+offset_right = 450.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BgImage" type="TextureRect" parent="Background" unique_id=418700979]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_nlfh6")
+
+[node name="CloseButton" type="Button" parent="Background" unique_id=888315955]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "✕"
+
+[node name="TitleLabel" type="Label" parent="Background" unique_id=2082103640]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Fix the Pipes"
+
+[node name="GridContainer" type="GridContainer" parent="Background" unique_id=158486188]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="CheckButton" type="Button" parent="Background" unique_id=164433196]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Check Solution"
+
+[node name="AlreadyLabel" type="Label" parent="Background" unique_id=920344280]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "✓ Already fixed!"
+
+[node name="SuccessPanel" type="Panel" parent="." unique_id=825701661]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 580.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="SuccessPanel" unique_id=1552786867]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TitleLabel" type="Label" parent="SuccessPanel/VBox" unique_id=1888695129]
+layout_mode = 2
+text = "✓ Pipes Fixed!"
+
+[node name="MessageLabel" type="Label" parent="SuccessPanel/VBox" unique_id=62977706]
+layout_mode = 2
+text = "The water is flowing again."
+
+[node name="CountLabel" type="Label" parent="SuccessPanel/VBox" unique_id=1231854527]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="SuccessPanel/VBox" unique_id=1004646263]
+layout_mode = 2
+
+[node name="NoteLabel" type="Label" parent="SuccessPanel/VBox/Panel" unique_id=1887417623]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Maintenance Log #1\\n─────────────────\\nPipe junction B-7\\nrepaired. Water\\nrestored to sector\\neast wing."
+
+[node name="CloseSuccessButton" type="Button" parent="SuccessPanel/VBox" unique_id=2000090279]
+layout_mode = 2
+text = "Close"
+
+[connection signal="pressed" from="SuccessPanel/VBox/CloseSuccessButton" to="." method="_on_close_success_button_pressed"]

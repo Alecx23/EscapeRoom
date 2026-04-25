@@ -24,7 +24,11 @@ void SaveManager:: _bind_methods() {
 SaveManager::SaveManager() {
 	game_data["player_x"] = 0.0;
 	game_data["player_y"] = 0.0;
-	game_data["current_level"] = "Level2";
+	game_data["current_level"] = "";
+
+	game_data["current_puzzle_id"] = "";
+	game_data["puzzles"] = Dictionary();
+	game_data["inventory"] = Array();
 }
 
 SaveManager::~SaveManager() {}

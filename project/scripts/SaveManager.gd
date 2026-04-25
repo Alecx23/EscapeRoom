@@ -1,6 +1,7 @@
 extends SaveManager
 
 func initiate_full_save() -> void:
+	
 	var nodes = get_tree().get_nodes_in_group("player")
 	var p = null
 	
@@ -18,7 +19,18 @@ func initiate_full_save() -> void:
 		d["player_x"] = p.global_position.x
 		d["player_y"] = p.global_position.y
 		d["level_name"] = get_tree().current_scene.scene_file_path
-		d["inventory"] = Inventory.get_all_items()
+		
+		var items = Inventory.get_items();
+		var items_to_save = []
+		
+		for item in items:
+			var item_copy = item.duplicate()
+			
+			if item_copy.has("texture") and item_copy["texture"] is Texture2D:
+				item_copy["texture"] = item_copy["texture"].resource_path
+			items_to_save.append(item_copy)
+			
+		d["inventory"] = items_to_save
 		
 		game_data = d
 		save_game()
@@ -67,8 +79,24 @@ func load_game_and_apply() -> void:
 		print("[LOAD] Succes! Player teleportat la: ", p.global_position)
 		
 		# 5. Restaurăm Inventarul
-		var saved_items = game_data.get("inventory", [])
-		Inventory.set_all_items(saved_items)
-		Inventory.inventory_changed.emit()
+		var loaded_items = game_data.get("inventory", [])
+		var fixed_items = []
+		
+		for item_data in loaded_items:
+			var item_copy = item_data.duplicate()
+			
+			if item_copy.has("texture") and item_copy["texture"] is String:
+				var path = item_copy["texture"]
+				
+				if path.begins_with("res:/") and not path.begins_with("res://"):
+					path = path.replace("res:/", "res://")
+					
+				if FileAccess.file_exists(path):
+					item_copy["texture"] = load(path)
+				else:
+					print("[LOAD] the image has no path")
+			
+			fixed_items.append(item_copy)
+		
 	else:
 		print("[LOAD] EROARE: Scena s-a încărcat, dar nu am găsit nodul 'player'!")

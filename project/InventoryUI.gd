@@ -96,8 +96,19 @@ func _style_bag_button() -> void:
 func _refresh_ui() -> void:
 	for child in item_list.get_children():
 		child.queue_free()
-
-	var items : Array = Inventory.get_items()
+	
+	var items = Inventory.get_all_items()
+	for item in items:
+		var tex_rect = TextureRect.new()
+		var icon_data = item.get("icon", "")
+		
+		if icon_data is String and icon_data != "":
+			if FileAccess.file_exists(icon_data):
+				tex_rect.texture = load(icon_data)
+			else:
+				print("[InventoryUI] Error this path doesn't exist")
+		elif icon_data is Texture2D:
+			tex_rect.texture = icon_data
 
 	if items.is_empty():
 		var lbl := Label.new()
@@ -167,5 +178,32 @@ func _refresh_ui() -> void:
 			qty_lbl.add_theme_color_override("font_color", Color(0.0, 0.9, 1.0))
 			qty_lbl.add_theme_font_size_override("font_size", 13)
 			hbox.add_child(qty_lbl)
+			
+			# Forțăm rândul să proceseze mouse-ul
+		row.mouse_filter = Control.MOUSE_FILTER_STOP
+		
+		# Foarte important: Spunem textului și iconiței să NU fure click-ul
+		hbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		icon_wrap.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		name_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		if item.get("quantity", 1) > 1:
+			hbox.get_child(hbox.get_child_count()-1).mouse_filter = Control.MOUSE_FILTER_IGNORE
 
+		# Conectăm click-ul
+		row.gui_input.connect(func(event):
+			if event is InputEventMouseButton:
+				if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+					print("!!!! CLICK DETECTAT PE RÂND !!!!") # Mesaj de siguranță
+					_on_slot_cliked(item)
+		)
+		
+		row.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		
 		item_list.add_child(row)
+		
+func _on_slot_cliked(slot_data):
+	print(slot_data)
+	if slot_data.get("id", "") == "puzzle_paper":
+		$"../ReadingUI".open_clue()
+	else:
+		pass

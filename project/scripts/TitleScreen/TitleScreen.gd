@@ -21,8 +21,30 @@ func _on_settings_button_pressed() -> void:
 
 func _on_new_game_button_pressed() -> void:
 	Inventory.clear_inventory()
-	
 	GameSave.game_data = {}
+	
+	#For puzzle_3
+	
+	var data = GameStrings.load_json("res://data/Questions.json")
+	
+	if data.is_empty() or not data.has("puzzles"):
+		print("Error: the questions couldn't be loaded")
+		return
+	
+	var keys = data["puzzles"].keys()
+	randomize()
+	var random_index = randi() % keys.size()
+	var chosen_puzzle_id = keys[random_index]
+	
+	print("[Random]: I have chosen a puzzle: ", chosen_puzzle_id)
+	
+	var d = GameSave.get_game_data()
+	d["current_puzzle_id"] = chosen_puzzle_id;
+	GameSave.set_game_data(d)
+	
+	print("[TITLE SCREEN] Am salvat în C++ ID-ul: ", GameSave.get_game_data().get("current_puzzle_id"))
+	
+	
 	var starting_level = "res://scenes/Level1/Level1.tscn"
 	
 	if FileAccess.file_exists(starting_level):
