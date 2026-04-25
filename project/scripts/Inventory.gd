@@ -1,39 +1,46 @@
 ## Inventory.gd
-## Autoload singleton. Now backed by the C++ InventorySystem module.
-extends Node
+## Autoload singleton backed by the C++ InventorySystem.
+extends InventorySystem
 
 signal inventory_changed
 
-# ── C++ backend ───────────────────────────────────────────
-var _cpp : InventorySystem = InventorySystem.new()
+func _ready() -> void:
+	print("[Inventory] C++ backend ready. Max slots: ", get_max_slots())
 
 # ── Add an item ───────────────────────────────────────────
-# item must have "id", "name", and optionally "color" (as Color)
-func add_item(item: Dictionary) -> void:
-	# C++ stores id/name/quantity — color is GDScript-side only
-	var cpp_item := { "id": item.get("id", item.get("name", "")), "name": item.get("name", "") }
-	var added := _cpp.add_item(cpp_item)
+func add_item_ext(item: Dictionary) -> bool:
+	if not item.has("id"):
+		item["id"] = item.get("name", "")
+	var added = add_item(item)
 	if added:
-		emit_signal("inventory_changed")
+		inventory_changed.emit()
 		print("[Inventory] Added: ", item.get("name", "?"))
 	else:
-		print("[Inventory] Full or invalid item: ", item)
+		print("[Inventory] Full or invalid: ", item.get("name", "?"))
+	
+	return added
 
-# ── Remove an item by name ────────────────────────────────
-func remove_item(item_name: String) -> void:
-	var removed := _cpp.remove_item(item_name)
+# ── Remove an item by id ──────────────────────────────────
+func remove_item_ext(item_id: String) -> bool:
+	var removed := remove_item(item_id)
 	if removed:
-		emit_signal("inventory_changed")
-		print("[Inventory] Removed: ", item_name)
-
-# ── Check if an item is in inventory ─────────────────────
-func has_item(item_name: String) -> bool:
-	return _cpp.has_item(item_name)
-
+		inventory_changed.emit()
+		print("[Inventory] Removed: ", item_id)
+	return removed
+	
 # ── Get all items (used by UI) ────────────────────────────
-# Returns Array of Dictionaries with "id", "name", "quantity"
 func get_items() -> Array:
-	return _cpp.get_all_items()
+	return get_all_items()
+'''
+# ── Check if an item exists ───────────────────────────────
+func has_item(item_id: String) -> bool:
+	return _cpp.has_item(item_id)
+
+
+
+# ── Get a single item by id ───────────────────────────────
+func get_item(item_id: String) -> Dictionary:
+	return _cpp.get_item(item_id)
 
 # ── Get item count ────────────────────────────────────────
 func count() -> int:
@@ -47,6 +54,9 @@ func clear() -> void:
 # ── Max slots ─────────────────────────────────────────────
 func get_max_slots() -> int:
 	return _cpp.get_max_slots()
+'''	
 
-func _ready() -> void:
-	print("[Inventory] C++ backend ready. Max slots: ", _cpp.get_max_slots())
+func clear_inventory() -> void:
+	clear()
+	inventory_changed.emit()
+	print("[Inventory] Cleared everything.")

@@ -10,8 +10,14 @@ extends CharacterBody2D
 @onready var prompt_label  : Label            = $Prompt
 @onready var anim          : AnimatedSprite2D = $AnimatedSprite2D  # ← ADD THIS
 
-@export var world_width  : float = 3000.0
-@export var world_height : float = 3000.0
+#@export var world_width  : float = 3000.0
+#@export var world_height : float = 3000.0
+
+@export_group("Camera Limits")
+@export var limit_left : int = 0
+@export var limit_top : int = 0
+@export var limit_right : int = 2000
+@export var limit_bottom : int = 1500
 
 var _nearby : Node2D = null
 
@@ -21,10 +27,10 @@ func _ready() -> void:
 	anim.play("idle")
 	prompt_label.visible = false
 	camera.zoom = Vector2(camera_zoom, camera_zoom)
-	camera.limit_left   = -1000
-	camera.limit_top    = -1000
-	camera.limit_right  = int(world_width)
-	camera.limit_bottom = int(world_height)
+	camera.limit_left   = limit_left
+	camera.limit_top    = limit_top
+	camera.limit_right  = limit_right
+	camera.limit_bottom = limit_bottom
 	prompt_label.add_theme_color_override("font_color", Color(0.168, 0.247, 0.587, 1.0))
 	prompt_label.add_theme_font_size_override("font_size", 25)
 	prompt_label.z_index = 0
@@ -82,6 +88,7 @@ func _check_proximity() -> void:
 				text   = obj.get_prompt_text()
 				target = obj
 		if text != "" and target != null:
+			#floating press E button
 			_nearby = target
 			prompt_label.text    = text
 			prompt_label.visible = true

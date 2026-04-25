@@ -1,5 +1,6 @@
 #include "register_types.h"
 #include "inventory_system.h"
+#include "SaveManager.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
@@ -9,9 +10,9 @@ using namespace godot;
 void initialize_inventory_system(ModuleInitializationLevel p_level) {
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE)
 		return;
-	if (ClassDB::class_exists("InventorySystem"))
-		return;
+
 	ClassDB::register_class<InventorySystem>();
+	ClassDB::register_class<SaveManager>();
 }
 
 void uninitialize_inventory_system(ModuleInitializationLevel p_level) {}

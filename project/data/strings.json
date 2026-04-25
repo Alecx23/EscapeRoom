@@ -11,7 +11,14 @@
 	  "prompt_open":   "Press E — open the chest",
 	  "prompt_use":    "Press E — use {item} on {spot}",
 	  "prompt_locked": "{spot} — requires {item}"
+	},
+	"computer": {
+	  "name": "Maintenance Terminal",
+	  "prompt_open": "Press E — fix the pipes",
+	  "prompt_use": "Press E — use {item} on terminal",
+	  "prompt_locked": "Terminal Offline — requires {item}"
 	}
+	
   },
 
   "items": {

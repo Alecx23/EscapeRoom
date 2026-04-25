@@ -16,6 +16,30 @@ var _data : Dictionary = {}
 
 func _ready() -> void:
 	_load()
+	
+func load_json(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		print("Error the file doesn't exist", path)
+		return{}
+	
+	var file = FileAccess.open(path, FileAccess.READ)
+	var content = file.get_as_text()
+	var data = JSON.parse_string(content)
+	
+	if data == null:
+		print("Eroare: I couldn't parse the file", path)
+		return{}
+	return data
+	
+func get_puzzle_data(id: String) -> Dictionary:
+	var all_data = load_json("res://data/Questions.json")
+	
+	if all_data.has("puzzles") and all_data["puzzles"].has(id):
+		return all_data["puzzles"][id]
+	print("Error No Id found")
+	return{}
+
+
 
 func _load() -> void:
 	var path = "res://data/strings.json"

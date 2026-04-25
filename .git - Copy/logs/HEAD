@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 cb52e8dd6e7dfbe3b6c25495de6b8c20b213da5e Arlechino00 <tclsa30cai.vda@gmail.com> 1775579343 +0300	clone: from https://github.com/Alecx23/EscapeRoom.git
+cb52e8dd6e7dfbe3b6c25495de6b8c20b213da5e 8a3894b8f7c19fa570870eea19168632a1cc7035 Arlechino00 <tclsa30cai.vda@gmail.com> 1775579353 +0300	checkout: moving from main to Code
+8a3894b8f7c19fa570870eea19168632a1cc7035 cb52e8dd6e7dfbe3b6c25495de6b8c20b213da5e Arlechino00 <tclsa30cai.vda@gmail.com> 1775579570 +0300	checkout: moving from Code to main
+cb52e8dd6e7dfbe3b6c25495de6b8c20b213da5e 4d2e1d872396c1ee197f23cfe0a7f1bfd8be41ec Arlechino00 <tclsa30cai.vda@gmail.com> 1775579721 +0300	pull --ff --recurse-submodules --progress origin: Fast-forward
+4d2e1d872396c1ee197f23cfe0a7f1bfd8be41ec 50add1f5f6e9cf637c7319fac9c144fc6fd4e845 Arlechino00 <tclsa30cai.vda@gmail.com> 1775579728 +0300	checkout: moving from main to Code
+50add1f5f6e9cf637c7319fac9c144fc6fd4e845 1c777a503f6b03d7878ae9e2827c7a72ee75bb0e Arlechino00 <tclsa30cai.vda@gmail.com> 1775579966 +0300	commit: Added a template start
+1c777a503f6b03d7878ae9e2827c7a72ee75bb0e cb5c56ed854f9c340840dce7209a8a7d2a282646 Arlechino00 <tclsa30cai.vda@gmail.com> 1776193984 +0300	checkout: moving from Code to main
+cb5c56ed854f9c340840dce7209a8a7d2a282646 99d5feb3d89996a5c74c95c11d4772e3a04bbd1b Arlechino00 <tclsa30cai.vda@gmail.com> 1776194125 +0300	pull --ff --recurse-submodules --progress origin: Fast-forward

@@ -19,4 +19,10 @@ func toggle_pause() -> void:
 
 func _on_quit_to_menu_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/TitleScreen.tscn") # Replace with function body.
+	get_tree().change_scene_to_file("res://scenes/TitleScreen/TitleScreen.tscn") 
+
+
+func _on_save_pressed() -> void:
+	GameSave.initiate_full_save()
+	
+	

@@ -14,6 +14,7 @@ void InventorySystem::_bind_methods() {
     ClassDB::bind_method(D_METHOD("get_item_count"), &InventorySystem::get_item_count);
     ClassDB::bind_method(D_METHOD("set_max_slots", "slots"), &InventorySystem::set_max_slots);
     ClassDB::bind_method(D_METHOD("get_max_slots"), &InventorySystem::get_max_slots);
+	ClassDB::bind_method(D_METHOD("set_all_items", "items"), &InventorySystem::set_all_items);
 }
 
 bool InventorySystem::add_item(const Dictionary &item) {
@@ -64,5 +65,8 @@ void InventorySystem::clear() { items.clear(); }
 int InventorySystem::get_item_count() const { return items.size(); }
 void InventorySystem::set_max_slots(int slots) { max_slots = slots; }
 int InventorySystem::get_max_slots() const { return max_slots; }
+void InventorySystem::set_all_items(const Array &p_items) {
+	items = p_items.duplicate(true);
+}
 
 } // namespace godot

@@ -1,15 +1,15 @@
 ﻿#ifndef INVENTORY_SYSTEM_H
 #define INVENTORY_SYSTEM_H
 
-#include <godot_cpp/classes/ref_counted.hpp>
+#include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/core/class_db.hpp>
 
 namespace godot {
 
-class InventorySystem : public RefCounted {
-    GDCLASS(InventorySystem, RefCounted);
+class InventorySystem : public Node {
+    GDCLASS(InventorySystem, Node);
 
 protected:
     static void _bind_methods();
@@ -29,6 +29,7 @@ public:
     int get_item_count() const;
     void set_max_slots(int slots);
     int get_max_slots() const;
+    void set_all_items(const Array &p_items);
 };
 
 } // namespace godot
