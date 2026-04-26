@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bt8hdqt844jwr"]
 
-[ext_resource type="Script" uid="uid://wfnegyw8lwh5" path="res://scripts/World.gd" id="1_x1okc"]
+[ext_resource type="Script" uid="uid://wfnegyw8lwh5" path="res://scripts/Managers/World.gd" id="1_x1okc"]
 [ext_resource type="Texture2D" uid="uid://dkmyw7na6leqp" path="res://assets/Background(Rooms)/lvl 1 - introducere/level 1 big floor checkered.png" id="2_kb74u"]
 [ext_resource type="Texture2D" uid="uid://bryi55k4yjjpp" path="res://assets/Background(Rooms)/lvl 1 - introducere/Wall.png" id="3_x1okc"]
 [ext_resource type="Texture2D" uid="uid://biqyswvil0243" path="res://assets/Background(Rooms)/lvl 1 - introducere/locker.png" id="4_ect7k"]
@@ -8,20 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://cdvnuwaxxnfs5" path="res://scenes/Level1/Items/Key.tscn" id="5_7ibbf"]
 [ext_resource type="PackedScene" uid="uid://dotf55xempmnx" path="res://scenes/Level1/Items/Potion.tscn" id="6_neye0"]
 [ext_resource type="PackedScene" uid="uid://jmis2b40fcu4" path="res://scenes/Player.tscn" id="7_xqmow"]
-[ext_resource type="Script" uid="uid://67myj7hk605y" path="res://InventoryUI.gd" id="8_o5fci"]
+[ext_resource type="Script" uid="uid://67myj7hk605y" path="res://scripts/UI/InventoryUI.gd" id="8_o5fci"]
 [ext_resource type="PackedScene" uid="uid://cv30bevscsoom" path="res://scenes/Commons/Pause_menu.tscn" id="9_2uc1i"]
-[ext_resource type="Script" uid="uid://bylv5y7v6hyi1" path="res://scripts/Level_1/Puzzel_1/UI_Interaction.gd" id="9_neye0"]
-[ext_resource type="Script" uid="uid://cumu16x2uu3rr" path="res://scripts/Level_1/Puzzle_2/CablePuzzleTrigger.gd" id="10_xqmow"]
-[ext_resource type="PackedScene" uid="uid://cqbxfh4x0g4" path="res://scripts/Level_1/Puzzle_3/interaction.tscn" id="11_o5fci"]
+[ext_resource type="PackedScene" uid="uid://n00kmmd8bfvd" path="res://scenes/Level1/puzzles/SwitchPuzzle/PickableClue.tscn" id="9_o5fci"]
+[ext_resource type="PackedScene" uid="uid://drmhxijro0dce" path="res://scenes/Level1/puzzles/CablePuzzle/wire_puzzle_inter.tscn" id="11_2uc1i"]
+[ext_resource type="PackedScene" uid="uid://cqbxfh4x0g4" path="res://scenes/Level1/puzzles/SwitchPuzzle/SwitchPuzzleInter.tscn" id="11_o5fci"]
 [ext_resource type="Texture2D" uid="uid://c4j6f2krfx1rq" path="res://assets/Background(Rooms)/lvl 1 - introducere/courtain.png" id="11_v5koy"]
-[ext_resource type="PackedScene" uid="uid://gg83fr4jpppe" path="res://scenes/Level1/puzzles/puzzle_3/ReadingUI.tscn" id="12_7ibbf"]
-[ext_resource type="PackedScene" uid="uid://n00kmmd8bfvd" path="res://scenes/Level1/puzzles/puzzle_3/PickableClue.tscn" id="12_v5koy"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ibbf"]
-size = Vector2(373, 448)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5fci"]
-size = Vector2(190, 459)
+[ext_resource type="PackedScene" uid="uid://kvvh34e4r1sc" path="res://scenes/Level1/puzzles/PipePuzzle/PipePuzzleInter.tscn" id="12_2uc1i"]
+[ext_resource type="PackedScene" uid="uid://gg83fr4jpppe" path="res://scenes/Level1/puzzles/SwitchPuzzle/ReadingUI.tscn" id="12_7ibbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1okc"]
 size = Vector2(32.28125, 1647)
@@ -69,10 +63,13 @@ position = Vector2(67, -20)
 position = Vector2(-67, 20)
 
 [node name="Lift" parent="Interactions/UseSpot" unique_id=1666000790 instance=ExtResource("4_v5koy")]
-position = Vector2(725.00006, 944.00006)
+position = Vector2(748.00006, 946)
 scale = Vector2(0.65, 0.65)
 
 [node name="Items" type="Node2D" parent="Interactions" unique_id=993429395]
+
+[node name="PickableClue" parent="Interactions/Items" unique_id=1451854495 instance=ExtResource("9_o5fci")]
+position = Vector2(1211, 396)
 
 [node name="Key" parent="Interactions/Items" unique_id=179543878 instance=ExtResource("5_7ibbf")]
 position = Vector2(-127, -195)
@@ -80,34 +77,23 @@ position = Vector2(-127, -195)
 [node name="Potion" parent="Interactions/Items" unique_id=1929507644 instance=ExtResource("6_neye0")]
 position = Vector2(-44, 254)
 
-[node name="PipesPuzzle" type="Area2D" parent="Interactions" unique_id=649494758]
-position = Vector2(1918, -71)
-script = ExtResource("9_neye0")
+[node name="Puzzles" type="Node2D" parent="Interactions" unique_id=235710587]
 
-[node name="ComputerSpot" type="CollisionShape2D" parent="Interactions/PipesPuzzle" unique_id=1116208252]
-position = Vector2(-1, 100)
-shape = SubResource("RectangleShape2D_7ibbf")
-
-[node name="CablePuzzle" type="Area2D" parent="Interactions" unique_id=1262398000]
-script = ExtResource("10_xqmow")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/CablePuzzle" unique_id=1371566519]
-position = Vector2(1361, 14.5)
-shape = SubResource("RectangleShape2D_o5fci")
-
-[node name="Promt" type="Label" parent="Interactions/CablePuzzle/CollisionShape2D" unique_id=1376550313]
-offset_left = 17.0
-offset_top = -48.875
-offset_right = 97.0
-offset_bottom = -10.875
-text = "Press E"
-
-[node name="interaction_puzzle3" parent="Interactions" unique_id=904449519 instance=ExtResource("11_o5fci")]
+[node name="interaction_puzzle3" parent="Interactions/Puzzles" unique_id=904449519 instance=ExtResource("11_o5fci")]
 position = Vector2(306, -215)
+
+[node name="PipePuzzleInter" parent="Interactions/Puzzles" unique_id=2126017899 instance=ExtResource("12_2uc1i")]
+position = Vector2(1756, -115)
+
+[node name="WirePuzzleInter" parent="Interactions/Puzzles" unique_id=2035385362 instance=ExtResource("11_2uc1i")]
+position = Vector2(1271, -204)
 
 [node name="PlayerManager" type="Node2D" parent="." unique_id=2134123035]
 
-[node name="Player" parent="PlayerManager" unique_id=388376052 groups=["player"] instance=ExtResource("7_xqmow")]
+[node name="Spawn" type="Marker2D" parent="PlayerManager" unique_id=2102824994]
+position = Vector2(915, 703)
+
+[node name="Player" parent="PlayerManager" unique_id=388376052 instance=ExtResource("7_xqmow")]
 position = Vector2(944, 597)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=132650828]
@@ -182,6 +168,3 @@ shape = SubResource("RectangleShape2D_ect7k")
 position = Vector2(1372.75, 117.875)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_kb74u")
-
-[node name="Node2D" parent="." unique_id=492396234 instance=ExtResource("12_v5koy")]
-position = Vector2(2018, 693)
