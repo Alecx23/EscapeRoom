@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cv30bevscsoom"]
 
-[ext_resource type="Script" uid="uid://drak4rw0tvlv7" path="res://scripts/pause_menu.gd" id="1_lddbi"]
+[ext_resource type="Script" uid="uid://drak4rw0tvlv7" path="res://scripts/UI/pause_menu.gd" id="1_lddbi"]
 [ext_resource type="FontFile" uid="uid://d3lowxrvtp2b6" path="res://assets/fonts/TypewriterzDemoBold.ttf" id="1_myx47"]
 [ext_resource type="FontFile" uid="uid://dxrgi8agoifsg" path="res://assets/fonts/TypewriterzDemoRegular.ttf" id="2_kukqi"]
 

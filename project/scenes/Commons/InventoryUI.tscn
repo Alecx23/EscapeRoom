@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bdx72jl2ohxu4"]
 
-[ext_resource type="Script" uid="uid://67myj7hk605y" path="res://InventoryUI.gd" id="1_wqexf"]
+[ext_resource type="Script" uid="uid://67myj7hk605y" path="res://scripts/UI/InventoryUI.gd" id="1_wqexf"]
 
 [node name="InventoryUi" type="Node2D" unique_id=495856572 groups=["inventory_ui"]]
 

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://jmis2b40fcu4"]
 
-[ext_resource type="Script" uid="uid://cf7v012cceicv" path="res://scripts/Player.gd" id="1_p0vlq"]
+[ext_resource type="Script" uid="uid://cf7v012cceicv" path="res://scripts/Managers/Player.gd" id="1_p0vlq"]
 [ext_resource type="Texture2D" uid="uid://iq4rm3ltskic" path="res://icon.svg" id="2_v6fml"]
+[ext_resource type="Texture2D" uid="uid://73b5gkxfjvf8" path="res://assets/Characters/PNG-Spritesheet-Semi-Final.png" id="3_mdl7e"]
 [ext_resource type="Texture2D" uid="uid://dt72rfjm8xl22" path="res://assets/Characters/Spritesheet roboPNG.png" id="4_qu4a1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v6fml"]
@@ -9,6 +10,10 @@ radius = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0vlq"]
 radius = 142.44
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khinc"]
+atlas = ExtResource("3_mdl7e")
+region = Rect2(256, 0, 256, 256)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3li8b"]
 atlas = ExtResource("4_qu4a1")
@@ -50,6 +55,10 @@ region = Rect2(512, 256, 256, 256)
 atlas = ExtResource("4_qu4a1")
 region = Rect2(0, 0, 256, 256)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_61ith"]
+atlas = ExtResource("3_mdl7e")
+region = Rect2(512, 0, 256, 256)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7iby"]
 atlas = ExtResource("4_qu4a1")
 region = Rect2(256, 0, 256, 256)
@@ -64,6 +73,14 @@ region = Rect2(256, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_khinc"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khinc")
+}],
+"loop": false,
+"name": &"down",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3li8b")
@@ -108,6 +125,14 @@ animations = [{
 "loop": false,
 "name": &"interact",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61ith")
+}],
+"loop": false,
+"name": &"up",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,4 +191,4 @@ texture = ExtResource("2_v6fml")
 position = Vector2(-720, 384)
 scale = Vector2(1, 1.072)
 sprite_frames = SubResource("SpriteFrames_khinc")
-animation = &"hit"
+animation = &"down"

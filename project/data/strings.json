@@ -12,7 +12,7 @@
 	  "prompt_use":    "Press E — use {item} on {spot}",
 	  "prompt_locked": "{spot} — requires {item}"
 	},
-	"computer": {
+	"pipe_puzzle": {
 	  "name": "Maintenance Terminal",
 	  "prompt_open": "Press E — fix the pipes",
 	  "prompt_use": "Press E — use {item} on terminal",
